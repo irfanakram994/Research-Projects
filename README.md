@@ -94,6 +94,7 @@ This notebook is designed to run entirely in memory within **Google Colab (Free 
 ```bash
 pip install medmnist timm torch torchvision matplotlib
 
+```
 ## Author
 
 Irfan Ali
