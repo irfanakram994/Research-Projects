@@ -36,7 +36,7 @@ https://drive.google.com/drive/folders/1rMzeOmaq52YxXo6190A5G5XI5aSGgJWC?usp=sha
 - Real-time fitness coach
 - Streamlit dashboard
 
-#2. SkillNet Proof-of-Concept Baseline
+# 2. SkillNet Proof-of-Concept Baseline
 
 A lightweight PyTorch proof-of-concept inspired by the paper **"SkillNet: Open-Style Skill Acquisition and Adaptive Inference for Robust Biomedical Deep Learning"** (BCB '26). 
 
