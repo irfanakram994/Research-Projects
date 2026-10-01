@@ -95,6 +95,80 @@ This notebook is designed to run entirely in memory within **Google Colab (Free 
 pip install medmnist timm torch torchvision matplotlib
 
 ```
+# 3. 📈 BondMM Interactive Simulator & Analytics Dashboard
+
+An interactive simulation and comparative analytics platform built for **Google Colab** using **Streamlit**, **Plotly**, and **Prophet**. This project models, visualizes, and benchmark tests the Automated Market Maker (AMM) protocol introduced in the research paper:
+
+> **"An Automated Market Maker Algorithm for Fixed-Rate Trading with Flexible Maturities"**  
+> *Authors: Tuan Tran and Duc A. Tran*
+
+---
+
+## 📌 Project Overview
+
+Traditional fixed-rate DeFi protocols (e.g., Yield Protocol, Notional Finance) rely on discrete maturity buckets, leading to fragmented liquidity pools and severe capital inefficiency. **BondMM** addresses these challenges by introducing a continuous yield-space invariant function $Kx^\alpha + y^\alpha = C$, enabling:
+
+1. **Flexible, Continuous Maturities:** Trade bonds across any maturity duration without fragmented liquidity pools.
+2. **Single-Transaction Cross-Maturity Swaps:** Shift bond maturity positions from $T_1$ to $T_2$ seamlessly without multi-pool routing.
+3. **LP Equity Capital Protection:** Built-in dynamic equity ratio checks ($\rho \ge 90\%$) that protect liquidity providers from impermanent loss and systemic drawdown during extreme interest rate volatility.
+4. **Predictive Rate Forecasting:** Integrates Meta's **Prophet** time-series forecasting model alongside traditional **Vasicek stochastic models** to simulate future interest rate trajectories (e.g., AAVE borrow rates) and stress-test the AMM invariant curves.
+
+---
+
+## 🚀 Key Features
+
+* **Interactive Order Sandbox:** Place live `Borrow`, `Lend`, and `Cross-Maturity Swap` orders with real-time calculations for price impact, implied fixed rates, and virtual state updates.
+* **2D Invariant & Yield Curve Plotter:** Dynamic Plotly visualizations showing real-time state movements along the $Kx^\alpha + y^\alpha = C$ invariant curve and corresponding yield curve updates.
+* **Prophet Rate Engine:** Time-series interest rate forecasting engine to project yield trends and uncertainty intervals ($y_{hat}$, $y_{hat\_lower}$, $y_{hat\_upper}$).
+* **Comparative Benchmark Suite:** Head-to-head performance comparison of **BondMM vs. Yield Protocol vs. Notional Finance** measuring execution slippage and LP equity resilience under rate shocks.
+
+---
+
+## 🛠️ System Architecture
+┌                   ──────────────────────────────────────┐
+                   │        Google Colab Runtime          │
+                   └──────────────────┬───────────────────┘
+                                      │
+              ┌───────────────────────┴───────────────────────┐
+              │                                               │
+   ┌──────────▼──────────┐                         ┌──────────▼──────────┐
+   │     BondMM Core     │                         │     Rate Engine     │
+   │  - Invariant Curve  │                         │  - Vasicek Model    │
+   │  - Virtual States   │                         │  - Prophet Forecast │
+   │  - Cross Swaps      │                         │  - Synthetic Data   │
+   └──────────┬──────────┘                         └──────────┬──────────┘
+              │                                               │
+              └───────────────────────┬───────────────────────┘
+                                      │
+                           ┌──────────▼──────────┐
+                           │       app.py        │
+                           │ (Streamlit Interface)│
+                           └──────────┬──────────┘
+                                      │
+                           ┌──────────▼──────────┐
+                           │    localtunnel      │
+                           │  (Public Web URL)   │
+                           └─────────────────────┘
+---
+
+## 💻 How to Run on Google Colab
+
+This project is optimized to run entirely inside **Google Colab (Free Tier)** using in-memory execution—no Google Drive storage or local setup required.
+
+### Step 1: Open Google Colab & Install Dependencies
+Open a fresh notebook in Google Colab and run the following in the first cell:
+
+```python
+!pip install -q streamlit pyngrok numpy pandas plotly scipy prophet
+```
+import subprocess
+
+# Launch Streamlit server in the background
+p = subprocess.Popen(["streamlit", "run", "app.py", "--server.port", "8501"])
+
+# Expose local Streamlit port via localtunnel
+!npx localtunnel --port 8501
+
 ## Author
 
 Irfan Ali
