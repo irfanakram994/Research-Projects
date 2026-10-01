@@ -124,31 +124,8 @@ Traditional fixed-rate DeFi protocols (e.g., Yield Protocol, Notional Finance) r
 
 ---
 
-## 🛠️ System Architecture
-┌                   ──────────────────────────────────────┐
-                   │        Google Colab Runtime          │
-                   └──────────────────┬───────────────────┘
-                                      │
-              ┌───────────────────────┴───────────────────────┐
-              │                                               │
-   ┌──────────▼──────────┐                         ┌──────────▼──────────┐
-   │     BondMM Core     │                         │     Rate Engine     │
-   │  - Invariant Curve  │                         │  - Vasicek Model    │
-   │  - Virtual States   │                         │  - Prophet Forecast │
-   │  - Cross Swaps      │                         │  - Synthetic Data   │
-   └──────────┬──────────┘                         └──────────┬──────────┘
-              │                                               │
-              └───────────────────────┬───────────────────────┘
-                                      │
-                           ┌──────────▼──────────┐
-                           │       app.py        │
-                           │ (Streamlit Interface)│
-                           └──────────┬──────────┘
-                                      │
-                           ┌──────────▼──────────┐
-                           │    localtunnel      │
-                           │  (Public Web URL)   │
-                           └─────────────────────┘
+## 🛠️ System Architecture<img width="841" height="648" alt="image" src="https://github.com/user-attachments/assets/d8dec375-8d06-4318-8ae9-b8e474cfbd4f" />
+
 ---
 
 ## 💻 How to Run on Google Colab
